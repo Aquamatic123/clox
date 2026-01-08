@@ -1,0 +1,10 @@
+# Emacs backup files
+*~
+\#*\#
+.#*
+clox
+*.exe
+*.exe.stackdump
+*.o
+*.obj
+*.out
