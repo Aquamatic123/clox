@@ -13,8 +13,9 @@ int main(int argc, const char* argv[]) {
 
   writeChunk(&chunk, OP_RETURN, 123);
 
+  disassembleChunk(&chunk, "test chunk");
+
   freeChunk(&chunk);
 
-  disassembleChunk(&chunk, "test chunk");
   return 0;
 }
