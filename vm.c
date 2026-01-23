@@ -46,7 +46,7 @@ Value pop() {
 }
 
 static Value peek(int distance) {
-     return vm.stackTop[-1 - distance;
+     return vm.stackTop[-1 - distance];
 }
 
 static InterpretResult run() {
@@ -81,6 +81,9 @@ static InterpretResult run() {
 	       push(constant);
 	       break;
 	  }
+	  case OP_NIL: push(NIL_VAL); break;
+	  case OP_TRUE: push(BOOL_VAL(true)); break;
+	  case OP_FALSE: push(BOOL_VAL(false)); break;
 	  case OP_ADD:      BINARY_OP(NUMBER_VAL, +); break;
 	  case OP_SUBTRACT: BINARY_OP(NUMBER_VAL, -); break;
 	  case OP_MULTIPLY: BINARY_OP(NUMBER_VAL, *); break;
