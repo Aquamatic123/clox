@@ -36,7 +36,8 @@ static uint32_t hashString(const char* key,  int length) {
 }
 
 ObjString* takeString(char* chars, int length) {
-     return allocateString(chars, length);
+     uint32_t hash = hashString(chars, length);
+     return allocateString(chars, length, hash);
 }
 
 ObjString* copyString(const char* chars, int length) {
@@ -50,7 +51,7 @@ ObjString* copyString(const char* chars, int length) {
 void printObject(Value value) {
      switch (OBJ_TYPE(value)) {
      case OBJ_STRING:
-	  printf("%s", as_CSTRING(value));
+	  printf("%s", AS_CSTRING(value));
 	  break;
      }
 }
