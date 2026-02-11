@@ -9,3 +9,6 @@ cd clox
 make
 ./clox
 ```
+---
+
+This project was written to develop my C writing skills and learn about the insides of an interpreter.  
