@@ -4,8 +4,6 @@
 #include "common.h"
 #include "chunk.h"
 #include "value.h"
-#include <cstdio>
-#include <cstring>
 
 #define OBJ_TYPE(value) (AS_OBJ(value)->type)
 
