@@ -632,7 +632,7 @@ static void statement() {
      }
 }
 
-ObjFunction* compile(const char* source, Chunk* chunk) {
+ObjFunction* compile(const char* source) {
      initScanner(source);
      Compiler compiler;
      initCompiler(&compiler, TYPE_SCRIPT);
