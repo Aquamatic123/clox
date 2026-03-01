@@ -1,4 +1,3 @@
-#include <cstdint>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -153,6 +152,7 @@ static int emitJump(uint8_t instruction) {
 }
 
 static void emitReturn() {
+     emitByte(OP_NIL);
      emitByte(OP_RETURN);
 }
 
@@ -315,7 +315,7 @@ static uint8_t argumentList() {
 		    error("Can't have more than 255 arguments.");
 	       }
 	       argCount++;
-	  } while (match(TOKEN_RIGHT_COMMA));
+	  } while (match(TOKEN_COMMA));
      }
 
      consume(TOKEN_RIGHT_PAREN, "Expect ')' after arguments.");
@@ -512,7 +512,7 @@ static void block() {
 
 static void function(FunctionType type) {
      Compiler compiler;
-     initCompiler(compiler);
+     initCompiler(&compiler, type);
      beginScope();
 
      consume(TOKEN_LEFT_PAREN, "Expect '(' after function name.");
