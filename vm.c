@@ -34,7 +34,7 @@ static void runtimeError(const char* format, ...) {
 
      for (int i = vm.frameCount; i >= 0; i--) {
 	  CallFrame* frame = &vm.frames[i];
-	  ObjFunction* function = frame->function;
+	  ObjFunction* function = frame->closure->function;
 	  size_t instruction = frame->ip - function->chunk.code - 1;
 	  fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
 	  if (function->name == NULL) {
@@ -147,6 +147,15 @@ static ObjUpvalue* captureUpvalue(Value* local) {
      }
 
      return createdUpvalue;
+}
+
+static void closeUpvalues(Value* last) {
+     while (vm.openUpvalues != NULL && vm.openUpvalues->location >= last) {
+	  ObjUpvalue* upvalue = vm.openUpvalues;
+	  upvalue->closed = *upvalue->location;
+	  upvalue->location = &upvalue->closed;
+	  vm.openUpvalues = upvalue->next;
+     }
 }
 
 static bool isFalsey(Value value) {
@@ -338,8 +347,14 @@ static InterpretResult run() {
 
 	       break;
 	  }
+	  case OP_CLOSE_UPVALUE: {
+	       closeUpvalues(vm.stackTop - 1);
+	       pop();
+	       break;
+	  }
 	  case OP_RETURN: {
 	       Value result = pop();
+	       closeUpvalues(frame->slots);
 	       vm.frameCount--;
 	       if (vm.frameCount == 0) {
 		    pop();
