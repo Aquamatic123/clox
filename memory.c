@@ -6,6 +6,12 @@
 #include "object.h"
 
 void *reallocate(void *pointer, size_t oldSize, size_t newSize) {
+     if (newSize > oldSize) {
+#ifdef DEBUG_STRESS_GC
+	  collectGarbage();
+#endif
+     }
+
      if (newSize == 0) {
 	  free(pointer);
 	  return NULL;
@@ -53,4 +59,8 @@ void freeObjects() {
 	  freeObject(object);
 	  object = next;
      }
+}
+
+void collectGarbage() {
+     
 }
