@@ -127,7 +127,7 @@ static bool callValue(Value callee, int argCount) {
 	       return true;
 	  }
 	  default:
-	       break; // non-callable object type.
+	       break; // non-callable object type
 	  }
      }
 
