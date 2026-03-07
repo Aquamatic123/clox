@@ -14,12 +14,12 @@
 #define IS_FUNCTION(value) isObjType(value, OBJ_FUNCTION)
 #define IS_INSTANCE(value) isObjType(value, OBJ_INSTANCE)
 #define IS_NATIVE(value) isObjType(value, OBJ_NATIVE)
-#define IS_STRING(value) isObjectType(value, OBJ_STRING)
+#define IS_STRING(value) isObjType(value, OBJ_STRING)
 
 #define AS_CLASS(value) ((ObjClass*)AS_OBJ(value))
 #define AS_CLOSURE(value) ((ObjClosure*)AS_OBJ(value))
 #define AS_FUNCTION(value) ((ObjFunction*)AS_OBJ(value))
-#define AS_INSTANCE(value) ((ObjIstance*)AS_OBJ(value))
+#define AS_INSTANCE(value) ((ObjInstance*)AS_OBJ(value))
 #define AS_NATIVE(value)			\
      (((ObjNative*)AS_OBJ(value))->function)
 #define AS_STRING(value) ((ObjString*)AS_OBJ(value))
@@ -98,7 +98,7 @@ ObjString* copyString(const char* chars, int length);
 ObjUpvalue* newUpvalue(Value* slot);
 void printObject(Value value);
 
-static inline bool isObjectType(Value value, ObjType type) {
+static inline bool isObjType(Value value, ObjType type) {
      return IS_OBJ(value) && AS_OBJ(value)->type == type;
 }
 
