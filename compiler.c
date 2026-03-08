@@ -611,7 +611,7 @@ static void method() {
      consume(TOKEN_IDENTIFIER, "Expect method name.");
      uint8_t constant = identifierConstant(&parser.previous);
 
-     FuntionType type = TYPE_FUNCTION;
+     FunctionType type = TYPE_FUNCTION;
      function(type);
      emitBytes(OP_METHOD, constant);
 }
