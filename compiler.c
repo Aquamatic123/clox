@@ -765,6 +765,9 @@ static void returnStatement() {
      if (match(TOKEN_SEMICOLON)) {
 	  emitReturn();
      } else {
+	  if (current->type == TYPE_INITIALIZER) {
+	       error("Can't return a value from an initializer.");
+	  }
 	  expression();
 	  consume(TOKEN_SEMICOLON, "Expect ';' after return variable.");
 	  emitByte(OP_RETURN);
