@@ -175,7 +175,7 @@ void freeObjects() {
 }
 
 static void markRoots() {
-     for(Value* slot = vm.stack; slot < vm.stackTop; slot++) {
+     for (Value* slot = vm.stack; slot < vm.stackTop; slot++) {
 	  markValue(*slot);
      }
 
@@ -189,6 +189,7 @@ static void markRoots() {
 
      markTable(&vm.globals);
      markCompilerRoots();
+     markObject((Obj*)vm.initString);
 }
 
 static void traceReference() {
