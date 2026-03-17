@@ -72,7 +72,7 @@ typedef struct Compiler {
      int scopeDepth;
 } Compiler;
 
-typedef struct {
+typedef struct ClassCompiler {
      struct ClassCompiler* enclosing;
 	bool hasSuperclass;
 } ClassCompiler;
