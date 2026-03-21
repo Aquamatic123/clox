@@ -12,3 +12,4 @@ make
 ---
 
 This project was written to develop my C writing skills and learn about the insides of an interpreter.  
+I am not planning on adding more to this project after reading the book.
