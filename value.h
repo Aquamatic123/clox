@@ -8,7 +8,7 @@ typedef struct ObjString ObjString;
 
 #ifdef NAN_BOXING
 
-tyepdef uintt64_t Value;
+typedef uint64_t Value;
 
 #else
 
